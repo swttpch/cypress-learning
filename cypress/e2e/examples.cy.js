@@ -18,4 +18,13 @@ describe('Various examples', () => {
     cy.get('[data-test="nav-best-practices"]').click()
     cy.location('pathname').should('eq', '/best-practices')
   })
+
+  it.only('intercepts', () => {
+    cy.intercept("POST", "http://localhost:3000/examples", {
+      // like mocked data in fixtures foulder
+      fixture: "example.json",
+    })
+
+    cy.get('[data-test="post-button"]').click()
+  })
 })
